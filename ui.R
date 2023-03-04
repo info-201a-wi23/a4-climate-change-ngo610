@@ -24,7 +24,15 @@ subset_df <- climate_df %>%
 
 # User Interface
 intro_tab <- tabPanel(
-  "Introduction"
+  "Introduction",
+  fluidPage(
+    h1("Introduction"),
+    p("Carbon Dioxide (CO2) is a greenhouse gas produced by the burning of fossil fuels"),
+    a(href = "https://gist.github.com/4211337", "Source code"),
+    h1("The Dataset"),
+    h1("Calculated Variables"),
+    h1("Insights")
+   ),
 )
 
 select_widget <- 
@@ -45,20 +53,19 @@ slider_widget <- sliderInput(
   value = c(2000, 2020),
   sep = ""
 )
-# 
-# plot_tab <- tabPanel(
-#   "Visualzation",
-#   fluidPage(
-#     h1("Bar Chart Visualization")
-#   )
-# )
 
 main_panel_plot <- mainPanel(
     plotlyOutput(outputId = "climate_plot"),
+    h1("Insights"),
+    p("This bar chart highlights the comparison of total carbon dioxide emissions between different countries as selected with the widgets on the left panel. In addition, for each country, the numbers are broken down by year, as also selected with a widget, and the population of each country during that year is displayed. We can use this chart to find which countries have the highest CO2 emissions as measured in million tonnes."),
+    p("High population tends to correlate with higher levels of CO2 emissions. There doesn't appear to be a clear pattern between the year and the million tonnes of emissions, however, this may be dependent on the specific countries. The country with the record highest highest CO2 emissions was the United States in 2005 with 6137.604 million tonnes.")
 )
 
 plot_tab <- tabPanel(
   "Data Visualization",
+  fluidPage(
+    h1("Bar Chart Visualization")
+    ),
   sidebarLayout(
   sidebarPanel(
     select_widget,
